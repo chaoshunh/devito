@@ -256,7 +256,7 @@ class Operator(Callable):
         # Process data-carriers (first overrides, then fill up with whatever is needed)
         args = ReducerMap()
         args.update([p._arg_values(**kwargs) for p in self.input if p.name in kwargs])
-        args.update([p._arg_values() for p in self.input if p.name not in args])
+        args.update([p._arg_values(**kwargs) for p in self.input if p.name not in args])
         args = args.reduce_all()
 
         # All DiscreteFunctions should be defined on the same Grid
