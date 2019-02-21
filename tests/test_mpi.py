@@ -762,6 +762,18 @@ class TestCodeGeneration(object):
         destinations = {i.arguments[-2].field for i in calls}
         assert destinations == expected
 
+    @pytest.mark.parallel(mode=[(1, 'full')])
+    def test_poke_progress(self):
+        grid = Grid(shape=(4, 4))
+        x, y = grid.dimensions
+        t = grid.stepping_dim
+
+        f = TimeFunction(name='f', grid=grid)
+
+        eqn = Eq(f.forward, f[t, x-1, y] + f[t, x+1, y] + f[t, x, y-1] + f[t, x, y+1])
+        op = Operator(eqn)
+        from IPython import embed; embed()
+
 
 class TestOperatorAdvanced(object):
 
