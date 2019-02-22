@@ -961,10 +961,12 @@ class TestDeclarator(object):
   posix_memalign((void**)&a, 64, sizeof(float[i_size]));
   struct timeval start_section0, end_section0;
   gettimeofday(&start_section0, NULL);
+  /* Begin section0 */
   for (int i = i_m; i <= i_M; i += 1)
   {
     a[i] = a[i] + b[i] + 5.0F;
   }
+  /* End section0 */
   gettimeofday(&end_section0, NULL);
   timers->section0 += (double)(end_section0.tv_sec-start_section0.tv_sec)\
 +(double)(end_section0.tv_usec-start_section0.tv_usec)/1000000;
@@ -978,6 +980,7 @@ class TestDeclarator(object):
   posix_memalign((void**)&c, 64, sizeof(float[i_size][j_size]));
   struct timeval start_section0, end_section0;
   gettimeofday(&start_section0, NULL);
+  /* Begin section0 */
   for (int i = i_m; i <= i_M; i += 1)
   {
     for (int j = j_m; j <= j_M; j += 1)
@@ -986,6 +989,7 @@ class TestDeclarator(object):
       c[i][j] = sa0*c[i][j];
     }
   }
+  /* End section0 */
   gettimeofday(&end_section0, NULL);
   timers->section0 += (double)(end_section0.tv_sec-start_section0.tv_sec)\
 +(double)(end_section0.tv_usec-start_section0.tv_usec)/1000000;
@@ -1001,6 +1005,7 @@ class TestDeclarator(object):
   posix_memalign((void**)&c, 64, sizeof(float[i_size][j_size]));
   struct timeval start_section0, end_section0;
   gettimeofday(&start_section0, NULL);
+  /* Begin section0 */
   for (int i = i_m; i <= i_M; i += 1)
   {
     a[i] = 0.0F;
@@ -1009,6 +1014,7 @@ class TestDeclarator(object):
       c[i][j] = a[i]*c[i][j];
     }
   }
+  /* End section0 */
   gettimeofday(&end_section0, NULL);
   timers->section0 += (double)(end_section0.tv_sec-start_section0.tv_sec)\
 +(double)(end_section0.tv_usec-start_section0.tv_usec)/1000000;
@@ -1024,12 +1030,14 @@ class TestDeclarator(object):
   posix_memalign((void**)&a, 64, sizeof(float[i_size]));
   struct timeval start_section0, end_section0;
   gettimeofday(&start_section0, NULL);
+  /* Begin section0 */
   for (int i = i_m; i <= i_M; i += 1)
   {
     float t0 = 1.00000000000000F;
     float t1 = 2.00000000000000F;
     a[i] = 3.0F*t0*t1;
   }
+  /* End section0 */
   gettimeofday(&end_section0, NULL);
   timers->section0 += (double)(end_section0.tv_sec-start_section0.tv_sec)\
 +(double)(end_section0.tv_usec-start_section0.tv_usec)/1000000;
@@ -1042,6 +1050,7 @@ class TestDeclarator(object):
   float c_stack[i_size][j_size] __attribute__((aligned(64)));
   struct timeval start_section0, end_section0;
   gettimeofday(&start_section0, NULL);
+  /* Begin section0 */
   for (int k = k_m; k <= k_M; k += 1)
   {
     for (int s = s_m; s <= s_M; s += 1)
@@ -1058,6 +1067,7 @@ class TestDeclarator(object):
       }
     }
   }
+  /* End section0 */
   gettimeofday(&end_section0, NULL);
   timers->section0 += (double)(end_section0.tv_sec-start_section0.tv_sec)\
 +(double)(end_section0.tv_usec-start_section0.tv_usec)/1000000;

@@ -7,7 +7,7 @@ from devito import (Grid, Constant, Function, TimeFunction, SparseFunction,
                     SubDimension, Eq, Inc, Operator, norm, inner, switchconfig)
 from devito.data import LEFT, RIGHT
 from devito.ir.iet import Call, Conditional, Iteration, FindNodes
-from devito.mpi import MPI, HaloExchangeBuilder, HaloSchemeEntry
+from devito.mpi import MPI
 from examples.seismic.acoustic import acoustic_setup
 
 pytestmark = skipif(['yask', 'ops', 'nompi'])
@@ -772,7 +772,7 @@ class TestCodeGeneration(object):
 
         eqn = Eq(f.forward, f[t, x-1, y] + f[t, x+1, y] + f[t, x, y-1] + f[t, x, y+1])
         op = Operator(eqn)
-        from IPython import embed; embed()
+        #from IPython import embed; embed()
 
 
 class TestOperatorAdvanced(object):
